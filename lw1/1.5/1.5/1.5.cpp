@@ -1,7 +1,4 @@
-// 1.4.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
-#include <algorithm>
+﻿#include <algorithm>
 #include <boost\timer.hpp>
 #include <iostream>
 #include <iterator>
@@ -9,13 +6,13 @@
 
 void initMultitude(std::vector<int>& multitude)
 {
-	for (auto i = 0; i < multitude.size(); i++)
+	for (size_t i = 0; i < multitude.size(); i++)
 	{
 		multitude[i] = static_cast<int>(i);
 	}
 }
 
-void printGeneratingCombinationsLexicographicOrder(const int n, const int k, std::ostream& out)
+void distributionGenerationPrint(const int n, const int k, std::ostream& out)
 {
 	int sizeVector = k + 1;
 	std::vector<int> multitude(sizeVector);
@@ -23,8 +20,11 @@ void printGeneratingCombinationsLexicographicOrder(const int n, const int k, std
 	int m = 1;
 	while (m != 0)
 	{
-		copy(multitude.begin() + 1, multitude.end(), std::ostream_iterator<size_t>(out, " "));
-		std::cout << std::endl;
+		do
+		{
+			//copy(multitude.begin() + 1, multitude.end(), std::ostream_iterator<size_t>(out, " "));
+			//std::cout << std::endl;
+		} while (std::next_permutation(multitude.begin() + 1, multitude.end()));
 		m = k;
 		while (multitude.at(m) == n - k + m)
 		{
@@ -41,9 +41,8 @@ void printGeneratingCombinationsLexicographicOrder(const int n, const int k, std
 int main()
 {
 	boost::timer time;
-
 	time.restart();
-	printGeneratingCombinationsLexicographicOrder(10, 5, std::cout);
+	distributionGenerationPrint(100, 5, std::cout);
 	auto duration = time.elapsed();
 	std::cout << duration << std::endl;
 
