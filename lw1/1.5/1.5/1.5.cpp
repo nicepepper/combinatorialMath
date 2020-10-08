@@ -42,7 +42,7 @@ int main()
 {
 	boost::timer time;
 	time.restart();
-	distributionGenerationPrint(100, 5, std::cout);
+	distributionGenerationPrint(50, 5, std::cout);
 	auto duration = time.elapsed();
 	std::cout << duration << std::endl;
 
